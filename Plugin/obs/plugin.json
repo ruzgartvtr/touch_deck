@@ -1,0 +1,25 @@
+{
+  "id": "obs",
+  "name": "OBS Studio",
+  "version": "1.0.0",
+  "description": "Run OBS commands via obs-cli",
+  "homepage": "https://github.com/obsproject/obs-studio",
+  "instructions": "Install obs-cli and configure it. Then set commands below.",
+  "config": [
+    {"key": "command", "label": "OBS Command", "secret": false}
+  ],
+  "actions": [
+    {
+      "id": "toggle_recording",
+      "name": "Toggle Recording",
+      "type": "run_command",
+      "command": "${command} recording toggle"
+    },
+    {
+      "id": "toggle_streaming",
+      "name": "Toggle Streaming",
+      "type": "run_command",
+      "command": "${command} streaming toggle"
+    }
+  ]
+}

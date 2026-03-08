@@ -1,0 +1,49 @@
+{
+  "id": "spotify",
+  "name": "Spotify",
+  "version": "1.0.0",
+  "description": "Spotify playback control (requires access token)",
+  "homepage": "https://developer.spotify.com/documentation/web-api/",
+  "instructions": "Create a Spotify app, generate an access token, then paste it in Plugin Settings.",
+  "config": [
+    {"key": "access_token", "label": "Access Token", "secret": true}
+  ],
+  "actions": [
+    {
+      "id": "play",
+      "name": "Play",
+      "type": "http_request",
+      "method": "PUT",
+      "url": "https://api.spotify.com/v1/me/player/play",
+      "headers": {"Authorization": "Bearer ${access_token}"},
+      "body": "{}"
+    },
+    {
+      "id": "pause",
+      "name": "Pause",
+      "type": "http_request",
+      "method": "PUT",
+      "url": "https://api.spotify.com/v1/me/player/pause",
+      "headers": {"Authorization": "Bearer ${access_token}"},
+      "body": "{}"
+    },
+    {
+      "id": "next",
+      "name": "Next Track",
+      "type": "http_request",
+      "method": "POST",
+      "url": "https://api.spotify.com/v1/me/player/next",
+      "headers": {"Authorization": "Bearer ${access_token}"},
+      "body": "{}"
+    },
+    {
+      "id": "previous",
+      "name": "Previous Track",
+      "type": "http_request",
+      "method": "POST",
+      "url": "https://api.spotify.com/v1/me/player/previous",
+      "headers": {"Authorization": "Bearer ${access_token}"},
+      "body": "{}"
+    }
+  ]
+}

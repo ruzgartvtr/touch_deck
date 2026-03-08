@@ -1,0 +1,19 @@
+{
+  "id": "tapo",
+  "name": "Tapo",
+  "version": "1.0.0",
+  "description": "Tapo smart plug/light (requires external CLI)",
+  "homepage": "https://www.tapo.com/",
+  "instructions": "Provide a CLI command for controlling your Tapo device.",
+  "config": [
+    {"key": "command", "label": "Tapo Command", "secret": false}
+  ],
+  "actions": [
+    {
+      "id": "toggle",
+      "name": "Toggle Power",
+      "type": "run_command",
+      "command": "${command} toggle"
+    }
+  ]
+}

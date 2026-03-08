@@ -1,0 +1,20 @@
+{
+  "id": "soundboard",
+  "name": "Soundboard",
+  "version": "1.0.0",
+  "description": "Play a local audio file with a command",
+  "homepage": "https://example.com/soundboard",
+  "instructions": "Set your play command and audio file path. macOS example: afplay. Windows example: powershell -c (New-Object Media.SoundPlayer 'file').PlaySync()",
+  "config": [
+    {"key": "command", "label": "Play Command", "secret": false},
+    {"key": "file", "label": "Audio File Path", "secret": false}
+  ],
+  "actions": [
+    {
+      "id": "play",
+      "name": "Play Sound",
+      "type": "run_command",
+      "command": "${command} ${file}"
+    }
+  ]
+}

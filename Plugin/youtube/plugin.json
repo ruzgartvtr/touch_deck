@@ -1,0 +1,19 @@
+{
+  "id": "youtube",
+  "name": "YouTube",
+  "version": "1.0.0",
+  "description": "Open a YouTube channel or playlist",
+  "homepage": "https://www.youtube.com/",
+  "instructions": "Set your channel or playlist URL in config.",
+  "config": [
+    {"key": "url", "label": "YouTube URL", "secret": false}
+  ],
+  "actions": [
+    {
+      "id": "open",
+      "name": "Open YouTube",
+      "type": "open_url",
+      "url": "${url}"
+    }
+  ]
+}

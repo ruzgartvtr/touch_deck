@@ -1,0 +1,193 @@
+{
+  "plugins": [
+    {
+      "id": "spotify",
+      "name": "Spotify",
+      "version": "1.0.0",
+      "description": "Spotify playback control (requires access token)",
+      "homepage": "https://developer.spotify.com/documentation/web-api/",
+      "instructions": "Create a Spotify app, generate an access token, then paste it in Plugin Settings.",
+      "packageUrl": "https://raw.githubusercontent.com/Touch-Deck/Touch_Deck/main/Plugin/spotify/plugin.json",
+      "config": [
+        {"key": "access_token", "label": "Access Token", "secret": true}
+      ],
+      "actions": [
+        {
+          "id": "play",
+          "name": "Play",
+          "type": "http_request",
+          "method": "PUT",
+          "url": "https://api.spotify.com/v1/me/player/play",
+          "headers": {"Authorization": "Bearer ${access_token}"},
+          "body": "{}"
+        },
+        {
+          "id": "pause",
+          "name": "Pause",
+          "type": "http_request",
+          "method": "PUT",
+          "url": "https://api.spotify.com/v1/me/player/pause",
+          "headers": {"Authorization": "Bearer ${access_token}"},
+          "body": "{}"
+        },
+        {
+          "id": "next",
+          "name": "Next Track",
+          "type": "http_request",
+          "method": "POST",
+          "url": "https://api.spotify.com/v1/me/player/next",
+          "headers": {"Authorization": "Bearer ${access_token}"},
+          "body": "{}"
+        },
+        {
+          "id": "previous",
+          "name": "Previous Track",
+          "type": "http_request",
+          "method": "POST",
+          "url": "https://api.spotify.com/v1/me/player/previous",
+          "headers": {"Authorization": "Bearer ${access_token}"},
+          "body": "{}"
+        }
+      ]
+    },
+    {
+      "id": "youtube",
+      "name": "YouTube",
+      "version": "1.0.0",
+      "description": "Open a YouTube channel or playlist",
+      "homepage": "https://www.youtube.com/",
+      "instructions": "Set your channel or playlist URL in config.",
+      "packageUrl": "https://raw.githubusercontent.com/Touch-Deck/Touch_Deck/main/Plugin/youtube/plugin.json",
+      "config": [
+        {"key": "url", "label": "YouTube URL", "secret": false}
+      ],
+      "actions": [
+        {
+          "id": "open",
+          "name": "Open YouTube",
+          "type": "open_url",
+          "url": "${url}"
+        }
+      ]
+    },
+    {
+      "id": "tapo",
+      "name": "Tapo",
+      "version": "1.0.0",
+      "description": "Tapo smart plug/light (requires external CLI)",
+      "homepage": "https://www.tapo.com/",
+      "instructions": "Provide a CLI command for controlling your Tapo device.",
+      "packageUrl": "https://raw.githubusercontent.com/Touch-Deck/Touch_Deck/main/Plugin/tapo/plugin.json",
+      "config": [
+        {"key": "command", "label": "Tapo Command", "secret": false}
+      ],
+      "actions": [
+        {
+          "id": "toggle",
+          "name": "Toggle Power",
+          "type": "run_command",
+          "command": "${command} toggle"
+        }
+      ]
+    },
+    {
+      "id": "hue",
+      "name": "Philips Hue",
+      "version": "1.0.0",
+      "description": "Control Hue lights",
+      "homepage": "https://developers.meethue.com/",
+      "instructions": "Create a Hue API user and enter Bridge IP, username, and light id.",
+      "packageUrl": "https://raw.githubusercontent.com/Touch-Deck/Touch_Deck/main/Plugin/hue/plugin.json",
+      "config": [
+        {"key": "bridge_ip", "label": "Bridge IP", "secret": false},
+        {"key": "username", "label": "Hue Username", "secret": true},
+        {"key": "light_id", "label": "Light ID", "secret": false}
+      ],
+      "actions": [
+        {
+          "id": "light_on",
+          "name": "Light On",
+          "type": "http_request",
+          "method": "PUT",
+          "url": "http://${bridge_ip}/api/${username}/lights/${light_id}/state",
+          "body": "{\"on\":true}"
+        },
+        {
+          "id": "light_off",
+          "name": "Light Off",
+          "type": "http_request",
+          "method": "PUT",
+          "url": "http://${bridge_ip}/api/${username}/lights/${light_id}/state",
+          "body": "{\"on\":false}"
+        }
+      ]
+    },
+    {
+      "id": "obs",
+      "name": "OBS Studio",
+      "version": "1.0.0",
+      "description": "Run OBS commands via obs-cli",
+      "homepage": "https://github.com/obsproject/obs-studio",
+      "instructions": "Install obs-cli and configure it. Then set commands below.",
+      "packageUrl": "https://raw.githubusercontent.com/Touch-Deck/Touch_Deck/main/Plugin/obs/plugin.json",
+      "config": [
+        {"key": "command", "label": "OBS Command", "secret": false}
+      ],
+      "actions": [
+        {
+          "id": "toggle_recording",
+          "name": "Toggle Recording",
+          "type": "run_command",
+          "command": "${command} recording toggle"
+        },
+        {
+          "id": "toggle_streaming",
+          "name": "Toggle Streaming",
+          "type": "run_command",
+          "command": "${command} streaming toggle"
+        }
+      ]
+    },
+    {
+      "id": "discord",
+      "name": "Discord",
+      "version": "1.0.0",
+      "description": "Open a Discord server, channel, or invite",
+      "homepage": "https://discord.com/",
+      "instructions": "Set a Discord URL (https://discord.gg/..., https://discord.com/channels/..., or discord:// link).",
+      "packageUrl": "https://raw.githubusercontent.com/Touch-Deck/Touch_Deck/main/Plugin/discord/plugin.json",
+      "config": [
+        {"key": "url", "label": "Discord URL", "secret": false}
+      ],
+      "actions": [
+        {
+          "id": "open",
+          "name": "Open Discord",
+          "type": "open_url",
+          "url": "${url}"
+        }
+      ]
+    },
+    {
+      "id": "soundboard",
+      "name": "Soundboard",
+      "version": "1.0.0",
+      "description": "Play a local audio file with a command",
+      "homepage": "https://example.com/soundboard",
+      "instructions": "Set your play command and audio file path. macOS example: afplay. Windows example: powershell -c (New-Object Media.SoundPlayer 'file').PlaySync()",
+      "packageUrl": "https://raw.githubusercontent.com/Touch-Deck/Touch_Deck/main/Plugin/soundboard/plugin.json",
+      "config": [
+        {"key": "command", "label": "Play Command", "secret": false},
+        {"key": "file", "label": "Audio File Path", "secret": false}
+      ],
+      "actions": [
+        {
+          "id": "play",
+          "name": "Play Sound",
+          "type": "run_command",
+          "command": "${command} ${file}"
+        }
+      ]
+    }
+  ]
+}

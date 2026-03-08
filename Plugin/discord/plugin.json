@@ -1,0 +1,19 @@
+{
+  "id": "discord",
+  "name": "Discord",
+  "version": "1.0.0",
+  "description": "Open a Discord server, channel, or invite",
+  "homepage": "https://discord.com/",
+  "instructions": "Set a Discord URL (https://discord.gg/..., https://discord.com/channels/..., or discord:// link).",
+  "config": [
+    {"key": "url", "label": "Discord URL", "secret": false}
+  ],
+  "actions": [
+    {
+      "id": "open",
+      "name": "Open Discord",
+      "type": "open_url",
+      "url": "${url}"
+    }
+  ]
+}

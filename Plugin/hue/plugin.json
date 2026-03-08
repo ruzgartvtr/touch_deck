@@ -1,0 +1,31 @@
+{
+  "id": "hue",
+  "name": "Philips Hue",
+  "version": "1.0.0",
+  "description": "Control Hue lights",
+  "homepage": "https://developers.meethue.com/",
+  "instructions": "Create a Hue API user and enter Bridge IP, username, and light id.",
+  "config": [
+    {"key": "bridge_ip", "label": "Bridge IP", "secret": false},
+    {"key": "username", "label": "Hue Username", "secret": true},
+    {"key": "light_id", "label": "Light ID", "secret": false}
+  ],
+  "actions": [
+    {
+      "id": "light_on",
+      "name": "Light On",
+      "type": "http_request",
+      "method": "PUT",
+      "url": "http://${bridge_ip}/api/${username}/lights/${light_id}/state",
+      "body": "{\"on\":true}"
+    },
+    {
+      "id": "light_off",
+      "name": "Light Off",
+      "type": "http_request",
+      "method": "PUT",
+      "url": "http://${bridge_ip}/api/${username}/lights/${light_id}/state",
+      "body": "{\"on\":false}"
+    }
+  ]
+}
